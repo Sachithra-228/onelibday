@@ -358,8 +358,8 @@ function Strawberry({
 }: { 
   x: number, y: number, progress: any, threshold: number, rotate?: number, size?: 'sm' | 'md' 
 }) {
-  const scale = useTransform(progress, (v) => v > threshold ? 1 : 0)
-  const opacity = useTransform(progress, (v) => v > threshold ? 1 : 0)
+  const scale = useTransform(progress, (v: number) => v > threshold ? 1 : 0)
+  const opacity = useTransform(progress, (v: number) => v > threshold ? 1 : 0)
   
   return (
     <motion.div
@@ -391,9 +391,9 @@ function Candle({
   const y = 50 + (radius * Math.sin(angle)) / 10
   const threshold = index / total
   
-  const scale = useTransform(progress, (v) => v > threshold ? 1 : 0)
-  const opacity = useTransform(progress, (v) => v > threshold ? 1 : 0)
-  const yPos = useTransform(progress, (v) => v > threshold ? 0 : 50)
+  const scale = useTransform(progress, (v: number) => v > threshold ? 1 : 0)
+  const opacity = useTransform(progress, (v: number) => v > threshold ? 1 : 0)
+  const yPos = useTransform(progress, (v: number) => v > threshold ? 0 : 50)
   
   return (
     <motion.div
