@@ -352,6 +352,105 @@ function HeroSection() {
   )
 }
 
+// Sinhala Poem Section
+function SinhalaPoemSection() {
+  const lines = [
+    'අහස් කුස කොයිතරම් සුදු වලා තියෙනවද',
+    'වලා තුල සනීපෙට සදක් නිදි දන්නවද',
+    'සුමුදු ඒ සද මඩල ඔනෙලි නුඹ දන්නවද',
+    'මහද පැතු සුබ පැතුම් ඔය හිතට දැනෙනවද',
+  ]
+
+  return (
+    <motion.section
+      className="relative py-16 md:py-20 px-4 z-10 w-full"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+    >
+      <div className="max-w-4xl mx-auto">
+        <div className="glass rounded-3xl p-8 md:p-12 shadow-2xl border-2 border-primary/30 relative overflow-hidden">
+          {/* Decorative sparkles */}
+          {Array.from({ length: 8 }).map((_, i) => (
+            <motion.div
+              key={`sparkle-${i}`}
+              className="absolute"
+              style={{
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                y: [0, -20, 0],
+                opacity: [0.2, 0.6, 0.2],
+                scale: [1, 1.2, 1],
+                rotate: [0, 180, 360],
+              }}
+              transition={{
+                duration: 3 + Math.random() * 2,
+                repeat: Infinity,
+                delay: Math.random() * 2,
+                ease: 'easeInOut',
+              }}
+            >
+              <Sparkles className="w-4 h-4 text-primary/40" />
+            </motion.div>
+          ))}
+
+          {/* Animated lines */}
+          <div className="relative z-10 space-y-6 md:space-y-8">
+            {lines.map((line, index) => (
+              <motion.p
+                key={index}
+                className="text-xl md:text-2xl lg:text-3xl text-text font-body text-center leading-relaxed"
+                initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.8,
+                  delay: index * 0.2,
+                  ease: 'easeOut',
+                }}
+                whileHover={{
+                  scale: 1.05,
+                  color: '#FF6FAE',
+                  transition: { duration: 0.3 },
+                }}
+              >
+                {line}
+              </motion.p>
+            ))}
+          </div>
+
+          {/* Decorative corners */}
+          <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-primary/30 rounded-tl-lg" />
+          <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-primary/30 rounded-tr-lg" />
+          <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-primary/30 rounded-bl-lg" />
+          <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-primary/30 rounded-br-lg" />
+
+          {/* Animated gradient overlay */}
+          <motion.div
+            className="absolute inset-0 opacity-10 pointer-events-none"
+            animate={{
+              background: [
+                'linear-gradient(45deg, rgba(255,111,174,0.1) 0%, transparent 100%)',
+                'linear-gradient(135deg, rgba(139,92,246,0.1) 0%, transparent 100%)',
+                'linear-gradient(225deg, rgba(255,215,232,0.1) 0%, transparent 100%)',
+                'linear-gradient(45deg, rgba(255,111,174,0.1) 0%, transparent 100%)',
+              ],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+          />
+        </div>
+      </div>
+    </motion.section>
+  )
+}
+
 // Strawberry Component
 function Strawberry({ 
   x, y, progress, threshold, rotate = 0, size = 'md' 
@@ -1396,6 +1495,7 @@ export default function BirthdayPage() {
 
       {/* Sections */}
       <HeroSection />
+      <SinhalaPoemSection />
       <BirthdayCake />
       <VideoShowcase />
       <WishJar />
